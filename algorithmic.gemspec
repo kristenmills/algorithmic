@@ -6,11 +6,11 @@ require 'algorithmic/version'
 Gem::Specification.new do |spec|
   spec.name          = "algorithmic"
   spec.version       = Algorithmic::VERSION
-  spec.authors       = ["kristenmills"]
+  spec.authors       = ["Kristen Mills"]
   spec.email         = ["kristen@kristen-mills.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
-  spec.homepage      = ""
+  spec.summary       = "A collection of useful data structures and algorithms"
+  spec.description   = "A collection of useful data structures and algorithms"
+  spec.homepage      = "https://github.com/kristenmills/algorithmic"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")

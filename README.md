@@ -1,6 +1,6 @@
 # Algorithmic
 
-TODO: Write a gem description
+A collection of useful data structures and algorithms
 
 ## Installation
 
@@ -15,10 +15,6 @@ And then execute:
 Or install it yourself as:
 
     $ gem install algorithmic
-
-## Usage
-
-TODO: Write usage instructions here
 
 ## Contributing
 
