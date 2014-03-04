@@ -1,10 +1,13 @@
 require 'algorithmic/version'
 require 'algorithmic/collections/queue'
 
-module Algorithmic
-  # Your code goes here...
+
+# The module that contains all the Algorithms
+module Algorithm
+  
 end
 
+# The module that contains all the different collections
 module Collections
 
 end

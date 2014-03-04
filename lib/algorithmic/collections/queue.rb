@@ -87,5 +87,14 @@ module Collections
     def to_a
       @elements
     end
+
+    # Get a string representation of the array
+    #
+    # @return [String] string representation of the array
+    def inspect
+      @elements.inspect
+    end
+
+    alias_method :to_s, :inspect
   end
 end
