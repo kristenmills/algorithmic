@@ -23,6 +23,7 @@ module Collections
     # @param [Object] element The element to add to the queuer
     def enqueue(element)
       @elements << element
+      self
     end
     alias_method :<<, :enqueue
 
