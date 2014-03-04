@@ -2,6 +2,8 @@ module Collections
   class Queue
     include Enumerable
 
+    attr_reader :elements
+
     # Create a new Queue. Can also take a block for default parameter
     #
     # @param [Fixnum] size the size of the default queue
@@ -63,6 +65,17 @@ module Collections
         yield x
       end
       self
+    end
+
+    # Are two queues equal?
+    #
+    # @return [Boolean] true if yes false if no
+    def ==(queue)
+      if queue.is_a? Queue
+        @elements == queue.elements
+      else
+        false
+      end
     end
   end
 end
