@@ -1,20 +1,22 @@
 module Collections
+  #  A Queue implementation
   class Queue
     include Enumerable
-
-    attr_reader :elements
 
     # Create a new Queue. Can also take a block for default parameter
     #
     # @param [Fixnum] size the size of the default queue
     # @param [Object] default the default value for elements in the queue
-    def initialize(size=0, default=nil)
+    def initialize(size=0, default=nil, &block)
       @elements = Array.new
-      size.times do
-        self << default
-      end
-      size.times do
-        self << yield
+      if(block.nil?)
+        size.times do
+          self << default
+        end
+      else
+        size.times do
+          self << yield
+        end
       end
     end
 
@@ -73,10 +75,17 @@ module Collections
     # @return [Boolean] true if yes false if no
     def ==(queue)
       if queue.is_a? Queue
-        @elements == queue.elements
+        @elements == queue.to_a
       else
         false
       end
+    end
+
+    # Convert the queue into an array
+    #
+    # @return [Array] the array representation of this data structure
+    def to_a
+      @elements
     end
   end
 end

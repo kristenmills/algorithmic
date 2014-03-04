@@ -1,5 +1,5 @@
 require 'algorithmic/version'
-require 'collections/queue'
+require 'algorithmic/collections/queue'
 
 module Algorithmic
   # Your code goes here...
