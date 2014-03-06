@@ -33,16 +33,14 @@ module Collections
     #
     # @return [Object] the element removed
     def dequeue
-      e = @elements[0]
-      @elements = @elements.drop(1)
-      e
+      @elements.shift
     end
 
     # Looks at the first element from the queue
     #
     # @return [Object] the first element in the queue
     def front
-      @elements[0]
+      @elements.first
     end
     alias_method :peek, :front
 

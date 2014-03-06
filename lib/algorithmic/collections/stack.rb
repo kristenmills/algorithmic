@@ -18,6 +18,50 @@ module Collections
         end
       end
     end
-  
+
+    def push(element)
+      @elements.unshift(element)
+    end
+    alias_method :<<, :push
+
+    def pop
+      @elements.shift
+    end
+
+    def front
+      @elements.first
+    end
+
+    def empty?
+      @elements.empty?
+    end
+
+    def size
+      @elements.size
+    end
+
+    def each
+      @elements.each do |x|
+        yield x
+      end
+      self
+    end
+
+    def ==(stack)
+      if stack.is_a? Stack
+        @elements == stack.to_a
+      else
+        false
+      end
+    end
+
+    def to_a
+      @elements
+    end
+
+    def inspect
+      @elements.inspect
+    end
+    alias_method :to_s, :inspect
   end
 end
