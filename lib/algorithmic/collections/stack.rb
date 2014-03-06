@@ -86,7 +86,7 @@ module Collections
 
     # Get a string representation of the stack
     #
-    # @return [String] string representation of the queue
+    # @return [String] string representation of the stack
     def inspect
       @elements.inspect
     end

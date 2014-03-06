@@ -64,5 +64,11 @@ describe Collections::Queue do
       q2 = Collections::Queue.new(1,"monkey")
       expect(q1 == q2).to be_false
     end
+
+    it 'is not equal to random other things' do
+      q1 = Collections::Queue.new
+      a1 = Array.new
+      expect(q1 == a1).to be_false
+    end
   end
 end
