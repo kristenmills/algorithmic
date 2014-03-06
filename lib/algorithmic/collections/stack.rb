@@ -19,27 +19,46 @@ module Collections
       end
     end
 
+    # Push an element onto the stack
+    #
+    # @param [Object] element the element to push onto the stack
     def push(element)
       @elements.unshift(element)
     end
     alias_method :<<, :push
 
+    # Pop an element of the stack
+    #
+    # @return [Object] the element popped off the stack
     def pop
       @elements.shift
     end
 
+    # Looks at the first element on the stack
+    #
+    # @return [Object] the first element on the stack
     def front
       @elements.first
     end
+    alias_method :peek, :front
 
+    # Is the stack empty?
+    #
+    # @return [Boolean] true if yes, false if no
     def empty?
       @elements.empty?
     end
 
+    # Get the size of the stack
+    #
+    # @return [Fixnum] the size of the stack
     def size
       @elements.size
     end
 
+    # Iterator for the stack
+    #
+    # @return [Stack] the stack itself
     def each
       @elements.each do |x|
         yield x
@@ -47,6 +66,9 @@ module Collections
       self
     end
 
+    # Are the two stacks equal?
+    #
+    # @return [Boolean] true if yes, false if no
     def ==(stack)
       if stack.is_a? Stack
         @elements == stack.to_a
@@ -55,10 +77,16 @@ module Collections
       end
     end
 
+    # Convert the stack into an array
+    #
+    # @return [Array] the array representation of this stack
     def to_a
       @elements
     end
 
+    # Get a string representation of the stack
+    #
+    # @return [String] string representation of the queue
     def inspect
       @elements.inspect
     end

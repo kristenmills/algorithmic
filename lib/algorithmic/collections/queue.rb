@@ -46,7 +46,7 @@ module Collections
 
     # Is the queue empty?
     #
-    # @return [Boolean] true if yes false if no
+    # @return [Boolean] true if yes, false if no
     def empty?
       @elements.empty?
     end
@@ -60,7 +60,7 @@ module Collections
 
     # Iterator for a queue
     #
-    # @return [Queue] self the queue itself
+    # @return [Queue] the queue itself
     def each
       @elements.each do |x|
         yield x
@@ -70,7 +70,7 @@ module Collections
 
     # Are two queues equal?
     #
-    # @return [Boolean] true if yes false if no
+    # @return [Boolean] true if yes, false if no
     def ==(queue)
       if queue.is_a? Queue
         @elements == queue.to_a
@@ -81,14 +81,14 @@ module Collections
 
     # Convert the queue into an array
     #
-    # @return [Array] the array representation of this data structure
+    # @return [Array] the array representation of this queue
     def to_a
       @elements
     end
 
-    # Get a string representation of the array
+    # Get a string representation of the queue
     #
-    # @return [String] string representation of the array
+    # @return [String] string representation of the queue
     def inspect
       @elements.inspect
     end
