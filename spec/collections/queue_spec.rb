@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe Collections::Queue do
-
   context 'creation' do
     it 'can be created' do
       q = Collections::Queue.new
