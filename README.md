@@ -1,6 +1,6 @@
 # Algorithmic
 
-A collection of useful data structures and algorithms
+A collection of useful data structures and algorithms.
 
 ## Installation
 
