@@ -1,4 +1,5 @@
 module Collections
+  # A stack implementation
   class Stack
     include Enumerable
 
