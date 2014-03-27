@@ -17,15 +17,16 @@ module Collections
     # Adds a new key value pair to the trie
     #
     # @param [String] key the key
-    # @Param [Object] value the value to be stored at the key
+    # @param [Object] value the value to be stored at the key
     def add(key, value)
 			node = @root
-			key.each_byte do |char|
-				node.children[char-65] ||= TrieNode.new(@default_value)
+			key.each_char do |char|
+				node.children[char] ||= TrieNode.new(@default_value)
 				node = node.walk(char)
 			end
       node.value = value
 			node.terminal = true
+      value
     end
 
     alias_method :[]=, :add
@@ -36,7 +37,7 @@ module Collections
     # @return [Object] the value at the key or default value if it isn't there
     def delete(key)
       node = @root
-			word.each_byte do |c|
+			word.each_char do |c|
 				return @default_value unless node = node.walk(c)
 			end
 			node.terminal = false
@@ -51,7 +52,7 @@ module Collections
     # @return [Object] the value at the given key
     def get(key)
       node = @root
-      word.each_byte do |c|
+      word.each_char do |c|
         return @default_value unless node = node.walk(c)
       end
       node.value
@@ -62,13 +63,47 @@ module Collections
     # Does the trie have the given key
     #
     # @param [String] key the key you are searching for
-    # @return true if it has the key false if it doesn't
+    # @return [Boolean] true if it has the key false if it doesn't
     def has_key?(key)
       node = @root
-      word.each_byte do |c|
+      word.each_char do |c|
         return false unless node = node.walk(c)
       end
-      node.terminal? ? true : false
+      node.terminal ? true : false
+    end
+
+    # Tries to match a given string. '*' represent wildcards
+    #
+    # @param [String] string the match String
+    # @param [TrieNode] node the starting node
+    # @param [String] prefix what has already been matched
+    # @return [Array] a list of matching strings
+    # @example
+    #    add('Chair')
+    #    add('Champ')
+    #    match('Cha**') #=> [Chair, Champ]
+    def match(string, node=@root, prefix='')
+      if node.nil?
+        []
+      elsif string == ''
+        if node.terminal
+          [prefix]
+        else
+          []
+        end
+      else
+        char = string[0]
+        array = []
+        unless char == '*'
+          n = node.walk(char)
+          array += match_recursive(n, string[1..-1], prefix+ char)
+        else
+          node.children.each_key do |child|
+            array += match_recursve(node.walk(child), string[1..-1], prefix+child)
+          end
+        end
+        array
+      end
     end
   end
 
@@ -80,7 +115,7 @@ module Collections
     #
     # @param [Object] value the value to store at this trie
     def initialize(value=nil)
-      @children = Array.new(26)
+      @children = Hash.new
       @value = value
       @terminal = false
     end
@@ -90,7 +125,7 @@ module Collections
 		# @param [String] char the character you are trying to reach
 		# @return the node for that char or nil if it doesn't exist
     def walk(char)
-      @children[char-65]
+      @children[char]
     end
 
     # Is this node a leaf node
