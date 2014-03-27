@@ -2,16 +2,17 @@ module Collections
   # A trie implementation
   class Trie
     include Enumerable
+    #TODO implement each
 
-    attr_accessor :compressed
-
+    attr_reader :size
     # Constructor for the Trie
     #
     # @param [Object] default the default value for the trie
-    def initialize(default)
+    def initialize(default=nil)
       @default = default
       @root = TrieNode.new(default)
       @compressed = false
+      @size = 0
     end
 
     # Adds a new key value pair to the trie
@@ -25,6 +26,7 @@ module Collections
 				node = node.walk(char)
 			end
       node.value = value
+      @size += 1 unless node.terminal
 			node.terminal = true
       value
     end
@@ -37,9 +39,10 @@ module Collections
     # @return [Object] the value at the key or default value if it isn't there
     def delete(key)
       node = @root
-			word.each_char do |c|
+			key.each_char do |c|
 				return @default_value unless node = node.walk(c)
 			end
+      @size -=1 if node.terminal
 			node.terminal = false
       val = node.value
       node.value = @default_value
@@ -52,8 +55,8 @@ module Collections
     # @return [Object] the value at the given key
     def get(key)
       node = @root
-      word.each_char do |c|
-        return @default_value unless node = node.walk(c)
+      key.each_char do |c|
+        return @default unless node = node.walk(c)
       end
       node.value
     end
@@ -66,7 +69,7 @@ module Collections
     # @return [Boolean] true if it has the key false if it doesn't
     def has_key?(key)
       node = @root
-      word.each_char do |c|
+      key.each_char do |c|
         return false unless node = node.walk(c)
       end
       node.terminal ? true : false
@@ -104,6 +107,10 @@ module Collections
         end
         array
       end
+    end
+
+    def empty?
+      size == 0
     end
   end
 
