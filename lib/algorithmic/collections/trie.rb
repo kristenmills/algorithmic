@@ -20,14 +20,14 @@ module Collections
     # @param [String] key the key
     # @param [Object] value the value to be stored at the key
     def add(key, value)
-			node = @root
-			key.each_char do |char|
-				node.children[char] ||= TrieNode.new(@default_value)
-				node = node.walk(char)
-			end
+      node = @root
+      key.each_char do |char|
+        node.children[char] ||= TrieNode.new(@default_value)
+        node = node.walk(char)
+      end
       node.value = value
       @size += 1 unless node.terminal
-			node.terminal = true
+      node.terminal = true
       value
     end
 
@@ -39,11 +39,11 @@ module Collections
     # @return [Object] the value at the key or default value if it isn't there
     def delete(key)
       node = @root
-			key.each_char do |c|
-				return @default_value unless node = node.walk(c)
-			end
+      key.each_char do |c|
+        return @default_value unless node = node.walk(c)
+      end
       @size -=1 if node.terminal
-			node.terminal = false
+      node.terminal = false
       val = node.value
       node.value = @default_value
       val
@@ -128,16 +128,16 @@ module Collections
     end
 
     # Attempts to walk down to the tree to the given letter.
-		#
-		# @param [String] char the character you are trying to reach
-		# @return the node for that char or nil if it doesn't exist
+    #
+    # @param [String] char the character you are trying to reach
+    # @return the node for that char or nil if it doesn't exist
     def walk(char)
       @children[char]
     end
 
     # Is this node a leaf node
-		#
-		# @return [Boolean] true if yes false if no
+    #
+    # @return [Boolean] true if yes false if no
     def leaf?
       @children.count == 0
     end
