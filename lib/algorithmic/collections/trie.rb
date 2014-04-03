@@ -99,10 +99,10 @@ module Collections
         array = []
         unless char == '*'
           n = node.walk(char)
-          array += match_recursive(n, string[1..-1], prefix+ char)
+          array += match(string[1..-1], n, prefix+ char)
         else
           node.children.each_key do |child|
-            array += match_recursve(node.walk(child), string[1..-1], prefix+child)
+            array += match(string[1..-1], node.walk(child), prefix+child)
           end
         end
         array
