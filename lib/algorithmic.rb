@@ -1,4 +1,5 @@
 require 'algorithmic/version'
+require 'algorithmic/collections/dequeue'
 require 'algorithmic/collections/queue'
 require 'algorithmic/collections/stack'
 require 'algorithmic/collections/trie'
