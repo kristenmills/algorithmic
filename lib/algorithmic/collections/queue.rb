@@ -22,7 +22,8 @@ module Collections
 
     # Adds an new element to the queue
     #
-    # @param [Object] element The element to add to the queuer
+    # @param [Object] element The element to add to the queue
+    # @return [Queue] the queue itself
     def enqueue(element)
       @elements << element
       self

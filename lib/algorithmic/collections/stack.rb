@@ -23,8 +23,10 @@ module Collections
     # Push an element onto the stack
     #
     # @param [Object] element the element to push onto the stack
+    # @return [Stack] the stack itself
     def push(element)
       @elements.unshift(element)
+      self
     end
     alias_method :<<, :push
 

@@ -35,7 +35,7 @@ describe Collections::Stack do
     stack << 1 << 2 << 3 << 4
     expect(stack.size).to eq 4
     expect(stack.empty?).to be_false
-    1.upto(4) do |x|
+    4.downto(1) do |x|
       expect(stack.pop).to eq x
     end
     expect(stack.size).to eq 0
@@ -45,7 +45,7 @@ describe Collections::Stack do
   it 'iterates properly' do
     stack = Collections::Stack.new << 0 << 1 << 2 << 3
     stack.each_with_index do |element, index|
-      expect(element).to eq index
+      expect(element).to eq 3 - index
     end
   end
 
