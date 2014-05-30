@@ -1,15 +1,15 @@
 require 'spec_helper'
 
-describe Collections::Dequeue do
+describe Collections::Deque do
   context 'creation' do
     it 'can be created' do
-      dq = Collections::Dequeue.new
+      dq = Collections::Deque.new
       expect(dq.size).to eq 0
       expect(dq.empty?).to be_true
     end
 
     it 'can be created with default values' do
-      dq = Collections::Dequeue.new(1)
+      dq = Collections::Deque.new(1)
       expect(dq.size).to eq 1
       expect(dq.peek_front).to be_nil
       expect(dq.peek_back).to be_nil
@@ -17,7 +17,7 @@ describe Collections::Dequeue do
     end
 
     it 'can have different default values' do
-      dq = Collections::Dequeue.new(1, 30)
+      dq = Collections::Deque.new(1, 30)
       expect(dq.size).to eq 1
       expect(dq.peek_front).to eq 30
       expect(dq.peek_back).to eq 30
@@ -25,7 +25,7 @@ describe Collections::Dequeue do
     end
 
     it 'can have different default values using a block' do
-      dq = Collections::Dequeue.new(1) { Hash.new }
+      dq = Collections::Deque.new(1) { Hash.new }
       expect(dq.size).to eq 1
       expect(dq.peek_front.class).to eq Hash
       expect(dq.empty?).to be_false
@@ -34,7 +34,7 @@ describe Collections::Dequeue do
 
   context 'adding and removing' do
     it 'will push and pop properly' do
-      dq = Collections::Dequeue.new
+      dq = Collections::Deque.new
       dq << 1 << 2 << 3 << 4
       expect(dq.size).to eq 4
       expect(dq.empty?).to be_false
@@ -46,7 +46,7 @@ describe Collections::Dequeue do
     end
 
     it 'will shift and unshift properly' do
-      dq = Collections::Dequeue.new
+      dq = Collections::Deque.new
       dq.unshift(1).unshift(2).unshift(3).unshift(4)
       expect(dq.size).to eq 4
       expect(dq.empty?).to be_false
@@ -59,7 +59,7 @@ describe Collections::Dequeue do
   end
 
   it 'iterates properly' do
-    dq = Collections::Dequeue.new << 0 << 1 << 2 << 3
+    dq = Collections::Deque.new << 0 << 1 << 2 << 3
     dq.each_with_index do |element, index|
       expect(element).to eq index
     end
@@ -67,21 +67,21 @@ describe Collections::Dequeue do
 
   context 'equivalenece' do
     it 'is equal to equivalent queues' do
-      dq1 = Collections::Dequeue.new
+      dq1 = Collections::Deque.new
       dq1 << 1 << 2 << 3 << 4
-      dq2 = Collections::Dequeue.new
+      dq2 = Collections::Deque.new
       dq2 << 1 << 2 << 3 << 4
       expect(dq1 == dq2).to be_true
     end
 
-    it 'is not equal to dequeues that are not equivalent' do
-      dq1 = Collections::Dequeue.new
-      dq2 = Collections::Dequeue.new(1,"monkey")
+    it 'is not equal to deques that are not equivalent' do
+      dq1 = Collections::Deque.new
+      dq2 = Collections::Deque.new(1,"monkey")
       expect(dq1 == dq2).to be_false
     end
 
     it 'is not equal to random other things' do
-      dq1 = Collections::Dequeue.new
+      dq1 = Collections::Deque.new
       a1 = Array.new
       expect(dq1 == a1).to be_false
     end
